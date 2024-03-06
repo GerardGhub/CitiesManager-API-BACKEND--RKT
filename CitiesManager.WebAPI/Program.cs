@@ -1,7 +1,11 @@
+using CitiesManager.Core.Identity;
 using CitiesManager.Infrastructure.DatabaseContext;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,6 +80,24 @@ builder.Services.AddCors(options => {
  });
 });
 
+//Identity
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(opt =>
+{
+    opt.Password.RequiredLength = 5;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireLowercase = true;
+    opt.Password.RequireDigit = true;
+})
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+    .AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>()
+    .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>()
+    
+    
+    
+    ;
+
 
 var app = builder.Build();
 
@@ -93,6 +115,7 @@ app.UseSwaggerUI(options  =>
 app.UseRouting();
 app.UseCors();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
