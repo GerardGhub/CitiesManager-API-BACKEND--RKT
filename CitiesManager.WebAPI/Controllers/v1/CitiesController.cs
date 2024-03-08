@@ -54,6 +54,12 @@ namespace CitiesManager.WebAPI.Controllers.v1
 
 
   // PUT: api/Cities/5
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="cityID"></param>
+  /// <param name="city"></param>
+  /// <returns></returns>
   [HttpPut("{cityID}")]
   public async Task<IActionResult> PutCity(Guid cityID, [Bind(nameof(City.CityID), nameof(City.CityName))] City city)
   {

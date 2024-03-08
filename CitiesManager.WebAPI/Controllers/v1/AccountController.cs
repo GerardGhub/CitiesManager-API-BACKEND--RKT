@@ -19,12 +19,13 @@ namespace CitiesManager.WebAPI.Controllers.v1
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IJwtService _jwtService;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="userManager"></param>
-        /// <param name="signInManager"></param>
-        /// <param name="roleManager"></param>
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="userManager"></param>
+       /// <param name="signInManager"></param>
+       /// <param name="roleManager"></param>
+       /// <param name="jwtService"></param>
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager, IJwtService jwtService)
         {
             _userManager = userManager;
