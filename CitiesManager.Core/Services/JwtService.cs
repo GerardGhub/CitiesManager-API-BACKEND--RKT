@@ -17,9 +17,18 @@ namespace CitiesManager.Core.Services
         _configuration = configuration;
         }
 
+        /// <summary>
+        /// Generates a JWT token using the given user's information and the configuration settings.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+
         public AuthenticationResponse CreateJwtToken(ApplicationUser user)
         {
+            // Create a DateTime object representing the token expiration time by adding the number of minutes specified in the configuration to the current UTC time.
            DateTime expiration =  DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:EXPIRATION_MINUTES"]));
+
+            // Create an array of Claim objects representing the user's claims, such as their ID, name.email, etc
 
             Claim[] claims = new Claim[]
             {
@@ -30,9 +39,13 @@ namespace CitiesManager.Core.Services
                   new Claim(ClaimTypes.Name, user.PersonName) //Name of the user
             };
 
+
+            // Create a SymmetricSecurityKey object using the key specified in the configuration
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
 
+
+            // Create a SigningCredentials object with the security key and the HMACSHA256 algorithm
             SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             JwtSecurityToken tokengenerator = new JwtSecurityToken(
@@ -44,6 +57,7 @@ namespace CitiesManager.Core.Services
                 );
 
 
+            //Create a JwtSecurityToken object with the given issuer, audience, claims, expiration, and the signing credentials
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             string token = tokenHandler.WriteToken(tokengenerator);
 
