@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Serialization;
 
 namespace CitiesManager.Core.Models
 {
- public class City
+    public class City
  {
   [Key]
   public Guid CityID { get; set; }

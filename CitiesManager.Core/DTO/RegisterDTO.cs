@@ -1,11 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CitiesManager.Core.DTO
 {
@@ -25,8 +20,7 @@ namespace CitiesManager.Core.DTO
 
         [Required(ErrorMessage = "Phone number can't be blank")]
         [RegularExpression("^[0-9]*$",ErrorMessage = "Phone number should contain digists only")]
-        [Remote(action: "IsEmailAlreadyRegistered", controller: "Account", ErrorMessage = "Email is already is use")]
-
+     
         public string PhoneNumber { get; set; } = string.Empty;
 
 
