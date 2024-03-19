@@ -1,5 +1,8 @@
 Angular CRUD WITH .NET CORE
 
+singian28@gmail.com
+Admin123#
+
 //Previous setup before updating 
 ng --version 12 - 14
 dotnet --version 7
