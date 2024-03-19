@@ -133,7 +133,8 @@ AddJwtBearer(options =>
 
 builder.Services.AddAuthorization(options =>
 {
-
+ //   options.AddPolicy("RoleNamePolicy", policy =>
+ //policy.RequireRole("RoleName"));
 });
 
 var app = builder.Build();
