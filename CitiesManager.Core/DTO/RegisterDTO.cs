@@ -8,7 +8,6 @@ namespace CitiesManager.Core.DTO
     {
 
         [Required (ErrorMessage = "Person Name can't be blank")]
-
         public string PersonName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Email can't be blank")]

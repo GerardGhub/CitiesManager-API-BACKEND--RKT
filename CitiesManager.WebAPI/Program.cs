@@ -2,14 +2,12 @@ using CitiesManager.Core.Identity;
 using CitiesManager.Core.ServiceContracts;
 using CitiesManager.Core.Services;
 using CitiesManager.Infrastructure.DatabaseContext;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -133,8 +131,9 @@ AddJwtBearer(options =>
 
 builder.Services.AddAuthorization(options =>
 {
- //   options.AddPolicy("RoleNamePolicy", policy =>
- //policy.RequireRole("RoleName"));
+    //   options.AddPolicy("RoleNamePolicy", policy =>
+    //policy.RequireRole("RoleName"));   
+    // Apply the policy to the desired endpoints by using the [Authorize(Policy = "RoleNamePolicy")] attribute.
 });
 
 var app = builder.Build();
